@@ -1,0 +1,13 @@
+1. Synthetic data: Fig 4, 5, 6, 7, 8: synthetic_data/
+
+2. Fig 9 (latent space visualization): country_latent_spaces_extended_visualization.ipynb
+
+3. Fig 10 (correlations): country_latent_spaces_correlations_visualization.ipynb
+
+4. Fig 11 (latent space visualization US/Chile): chile_us_latent_spaces_visualization.ipynb
+
+5. Fig 12 (need to finish the small internal graph): attitudinal_estimation_dimensional_sensitivity.py
+
+6. Fig 13 (attitudinal space visualization France, Germany, UK, Italy, Spain): attitudinal_spaces_extended_visualization_variations
+
+7. Fig 15: country_latent_spaces_visualization.ipynb
