@@ -29,5 +29,6 @@ attitudinal_dimensions = []
 for c in corr.columns:
     cr = corr[c].copy()
     cr.sort_values(ascending = False, inplace = True)
-    if cr[0] >= correlation_threshold:
-        print(c)
+    cr = cr.reset_index()
+    if cr[c].values[0] >= correlation_threshold:
+        print(c, cr[c].values[0])
