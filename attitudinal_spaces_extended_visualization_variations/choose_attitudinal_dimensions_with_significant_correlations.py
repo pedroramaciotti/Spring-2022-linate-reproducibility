@@ -3,7 +3,7 @@ import sys
 import pickle
 
 if len(sys.argv) < 4:
-    print('Usage: python choose_attitudinal_dimensions_with_significan_correlations.py <correlation_object_filename> <country_name> <correlation_threshold> [ideological_dimensions_under_consideration]. Aborting...')
+    print('Usage: python choose_attitudinal_dimensions_with_significan_correlations.py <correlation_probability_object_filename> <country_name> <correlation_probability_threshold> [ideological_dimensions_under_consideration]. Aborting...')
     exit(-1)
 
 correlation_object_filename = sys.argv[1]
@@ -16,19 +16,19 @@ if country not in dimension_correlations.keys():
     print('Non existent country. Aborting...')
     exit(-1)
 
-corr = dimension_correlations[country]
-corr = corr.reset_index()
+corr_prob_df = dimension_correlations[country]
+corr_prob_df = corr_prob_df.reset_index()
 
 if len(sys.argv) > 4:
     dims = sys.argv[4].split(':')
-    corr = corr[corr['index'].isin(dims)]
-corr.drop(columns = ['index'], inplace = True)
+    corr_prob_df = corr_prob_df[corr_prob_df['index'].isin(dims)]
+corr_prob_df.drop(columns = ['index'], inplace = True)
 
-correlation_threshold = float(sys.argv[3])
+correlation_probability_threshold = float(sys.argv[3])
 attitudinal_dimensions = []
-for c in corr.columns:
-    cr = corr[c].copy()
-    cr.sort_values(ascending = False, inplace = True)
-    cr = cr.reset_index()
-    if cr[c].values[0] >= correlation_threshold:
-        print(c, cr[c].values[0])
+for c in corr_prob_df.columns:
+    crp_df = corr_prob_df[c].copy()
+    crp_df.sort_values(ascending = True, inplace = True)
+    crp_df = crp_df.reset_index()
+    if crp_df[c].values[0] < correlation_probability_threshold:
+        print(c, crp_df[c].values[0])
